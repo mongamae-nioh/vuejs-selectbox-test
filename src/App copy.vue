@@ -4,7 +4,7 @@
     <p>Choose your area</p>
   <label for="area">area: </label>
   <select v-model="selectedArea" @change="fetchAreas">
-    <option v-for="area in areas" :value="area.id" :key="area.id">
+    <option v-for="area in area" :value="area.id" :key="area.id">
       {{ area.name }}
     </option>
   </select>
@@ -20,7 +20,7 @@
       </select>
   </div>
   <!-- city -->
-  <div v-if="selectedPref > 0">
+  <div v-if="selectedPref">
     <p>Choose your city</p>
     <label for="city">city: </label>
     <select name="city" v-model="selectedCity">
@@ -31,25 +31,24 @@
   </div>
   <br>
   <!-- button -->
-  <div v-if="selectedCity > 0">
+  <div v-if="selectedCity">
     <button type=button>button</button>
   </div>
   </div>
 </template>
 
 <script>
-import areas from "./static/area.json"
-import hokkaido from "./static/hokkaido.json"
-import kanto from "./static/kanto.json"
-import kansai from "./static/kansai.json"
   export default {
     data() {
       return {
         selectedArea: '',
         selectedPref: '',
         selectedCity: '',
-        areas: areas,
-//        prefectures: prefectures,
+        area: [
+          { id: 1, name: 'Hokkaido, Tohoku' },
+          { id: 2, name: 'Kanto' },
+          { id: 3, name: 'kansai' }
+        ],
         prefectures: [],
         cities: [],
       }
@@ -58,13 +57,21 @@ import kansai from "./static/kansai.json"
       fetchAreas: function() {
       var pref_tags = [];
       if (this.selectedArea == 1) {
-        pref_tags = hokkaido
+        pref_tags = [
+          {id: 101, name: "Hokkaido"},
+        ];
+      } else
+        if(this.selectedArea == 2) {
+        pref_tags = [
+          {id: 102, name: "Ibaraki"},
+          {id: 103, name: "Tokyo"}
+        ];
       } else
         if(this.selectedArea == 3) {
-        pref_tags = kanto;
-      } else
-        if(this.selectedArea == 5) {
-        pref_tags = kansai;
+        pref_tags = [
+          {id: 104, name: "Osaka"},
+          {id: 105, name: "Kobe"}
+        ];
       } else {
         alert('Invalid value!!');
       }

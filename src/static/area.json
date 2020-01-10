@@ -1,0 +1,34 @@
+[
+        {
+            "id": 1,
+            "name": "Hokkaido"
+        },
+        {
+            "id": 2,
+            "name": "Tohoku"
+        },
+        {
+            "id": 3,
+            "name": "Kanto"
+        },
+        {
+            "id": 4,
+            "name": "Chubu"
+        },
+        {
+            "id": 5,
+            "name": "Kinki"
+        },
+        {
+            "id": 6,
+            "name": "Chugoku"
+        },
+        {
+            "id": 7,
+            "name": "Shikoku"
+        },
+        {
+            "id": 8,
+            "name": "Kyusyu/Okinawa"
+        }
+]

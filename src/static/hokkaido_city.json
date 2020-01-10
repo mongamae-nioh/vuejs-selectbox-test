@@ -1,0 +1,18 @@
+[
+    {
+        "city": "sapporo",
+        "areanumer": [
+            "sapporo-1",
+            "sapporo-2",
+            "sapporo-3"
+        ]
+    },
+    {
+        "city": "asahikawa",
+        "arenumber": [
+            "asahikawa-1",
+            "awahikawa-2",
+            "asahikawa-3"
+        ]
+    }
+]
