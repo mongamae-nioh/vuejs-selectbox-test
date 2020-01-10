@@ -1,22 +1,38 @@
 <template>
   <!-- area -->
   <div>
-    <p>choice area</p>
+    <p>Choose your area</p>
   <label for="area">area: </label>
-  <select v-model="selected" @change="fetchTags">
+  <select v-model="selectedArea" @change="fetchAreas">
     <option v-for="area in area" :value="area.id" :key="area.id">
       {{ area.name }}
     </option>
   </select>
   <br>
   <!-- prefecture -->
-  <div v-if="selected">
-    <label for="tag">town: </label>
-    <select name="tag" v-model="selectedTag">
-      <option v-for="tag in tags" :value="tag.name" :key="tag.id">
-        {{ tag.name }}
+  <div v-if="selectedArea">
+    <p>Choose your prefectures</p>
+    <label for="prefecture">prefecture: </label>
+    <select name="prefecture" v-model="selectedPref" @change="fetchCities">
+      <option v-for="prefecture in prefectures" :value="prefecture.id" :key="prefecture.id">
+        {{ prefecture.name }}
       </option>
       </select>
+  </div>
+  <!-- city -->
+  <div v-if="selectedPref">
+    <p>Choose your city</p>
+    <label for="city">city: </label>
+    <select name="city" v-model="selectedCity">
+      <option v-for="city in cities" :value="city.id" :key="city.id">
+        {{ city.name }}
+      </option>
+      </select>
+  </div>
+  <br>
+  <!-- button -->
+  <div v-if="selectedCity">
+    <button type=button>button</button>
   </div>
   </div>
 </template>
@@ -25,43 +41,68 @@
   export default {
     data() {
       return {
-        selected: '',
-        selectedTag: '',
+        selectedArea: '',
+        selectedPref: '',
+        selectedCity: '',
         area: [
-          { id: 1, name: 'Hokkaido' },
-          { id: 2, name: 'Tokyo' },
-          { id: 3, name: 'Osaka' }
+          { id: 1, name: 'Hokkaido, Tohoku' },
+          { id: 2, name: 'Kanto' },
+          { id: 3, name: 'kansai' }
         ],
-        tags: [],
+        prefectures: [],
+        cities: [],
       }
     },
    methods: {
-      fetchTags: function() {
-      var tmp_tags = [];
-      if (this.selected == 1) {
-        tmp_tags = [
-          {id: 6, name: "Sapporo"},
-          {id: 7, name: "Aasahikawa"}
+      fetchAreas: function() {
+      var pref_tags = [];
+      if (this.selectedArea == 1) {
+        pref_tags = [
+          {id: 101, name: "Hokkaido"},
         ];
       } else
-        if(this.selected == 2) {
-        tmp_tags = [
-          {id: 8, name: "Oota-ku"},
-          {id: 9, name: "Chiyoda-ku"}
+        if(this.selectedArea == 2) {
+        pref_tags = [
+          {id: 102, name: "Ibaraki"},
+          {id: 103, name: "Tokyo"}
         ];
       } else
-        if(this.selected == 3) {
-        tmp_tags = [
-          {id: 8, name: "Osaka"},
-          {id: 9, name: "Neyagawa"}
+        if(this.selectedArea == 3) {
+        pref_tags = [
+          {id: 104, name: "Osaka"},
+          {id: 105, name: "Kobe"}
         ];
       } else {
         alert('Invalid value!!');
       }
       
-      this.tags = tmp_tags;
+      this.prefectures = pref_tags;
+    },
+      fetchCities: function() {
+      var city_tags = [];
+      if (this.selectedPref == 101) {
+        city_tags = [
+          {id: 1001, name: "Sapporo"},
+        ];
+      } else
+        if(this.selectedPref == 102) {
+        city_tags = [
+          {id: 1002, name: "Mito"},
+        ];
+      } else
+        if(this.selectedPref == 103) {
+        city_tags = [
+          {id: 1004, name: "Chiyoda-ku"},
+          {id: 1005, name: "Kita-ku"}
+        ];
+      } else {
+        alert('Invalid value!!');
+      }
+      
+      this.cities = city_tags;
     }
-  }
+
+}
 }
 
 </script>
